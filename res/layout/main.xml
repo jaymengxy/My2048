@@ -100,7 +100,6 @@
                         android:gravity="center"
                         android:textColor="#ffff9a07"
                         />
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
