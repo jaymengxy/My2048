@@ -4,6 +4,7 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:weightSum="1">
+
     <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -28,7 +29,7 @@
                     android:textColor="#ffff501f"
                     />
 
-            <Button
+            <TextView
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -37,6 +38,7 @@
                     android:textColor="#ff14ff16"
                     android:onClick="restart"
                     android:gravity="center_vertical"
+
                     />
         </LinearLayout>
 
@@ -53,6 +55,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     >
+
                 <TextView
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -62,6 +65,7 @@
                         android:textColor="#ff8c3bff"
                         android:gravity="bottom|center"
                         />
+
                 <TextView
                         android:id="@+id/tv_score"
                         android:layout_weight="1"
@@ -80,6 +84,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     >
+
                 <TextView
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -89,6 +94,7 @@
                         android:textColor="#ff8c3bff"
                         android:gravity="bottom|center"
                         />
+
                 <TextView
                         android:id="@+id/tv_max"
                         android:layout_weight="1"
@@ -104,10 +110,13 @@
     </LinearLayout>
 
 
-    <RelativeLayout
+    <com.mxy.My2048.GameView
+            android:id="@+id/gameview"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="300dp">
-    </RelativeLayout>
+
+
+    </com.mxy.My2048.GameView>
 </LinearLayout>
 
