@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
               android:weightSum="1">
 
     <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
 
@@ -29,16 +28,15 @@
                     android:textColor="#ffff501f"
                     />
 
-            <TextView
-                    android:layout_weight="1"
+            <Button
+                    android:id="@+id/bt"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:text="RESTART"
                     android:textSize="20sp"
                     android:textColor="#ff14ff16"
                     android:onClick="restart"
-                    android:gravity="center_vertical"
-
+                    android:gravity="center"
                     />
         </LinearLayout>
 
@@ -71,7 +69,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:text="3000"
+                        android:text="0"
                         android:textSize="20sp"
                         android:gravity="center"
                         android:textColor="#ffff9a07"
@@ -100,7 +98,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:text="123456"
+                        android:text="0"
                         android:textSize="20sp"
                         android:gravity="center"
                         android:textColor="#ffff9a07"
@@ -111,10 +109,10 @@
 
 
     <com.mxy.My2048.GameView
-            android:id="@+id/gameview"
             android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:id="@+id/gv"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp">
 
 
     </com.mxy.My2048.GameView>
