@@ -84,14 +84,9 @@ public class MyActivity extends Activity {
     }
 
     public void restart(View view) {
-        Button bt = (Button) findViewById(R.id.bt);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GameView gv = (GameView) findViewById(R.id.gv);
-                gv.startGame();
-            }
-        });
+        GameView gv = (GameView) findViewById(R.id.gv);
+        gv.startGame();
+
     }
 
     @Override
