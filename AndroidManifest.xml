@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.mxy.My2048"
           android:versionCode="1"
-          android:versionName="1.0">
+          android:versionName="0.9.6">
 
     <uses-sdk android:minSdkVersion="16"/>
     <application
@@ -10,7 +10,8 @@
             android:icon="@drawable/ic_launcher">
         <activity
                 android:name="MyActivity"
-                android:label="@string/app_name">
+                android:label="@string/app_name"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
