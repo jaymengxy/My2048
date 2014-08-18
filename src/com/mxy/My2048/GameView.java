@@ -36,7 +36,7 @@ public class GameView extends LinearLayout {
 
     private void initGameView() {
         setOrientation(LinearLayout.VERTICAL);
-        setBackgroundColor(0xffbbada0);
+//        setBackgroundColor(0xffbbada0);
         //设置触摸事件
         setOnTouchListener(new View.OnTouchListener() {
             // 定义触摸开始的X,Y坐标
