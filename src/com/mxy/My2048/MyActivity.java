@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -65,6 +66,9 @@ public class MyActivity extends Activity {
             maxScore();
         }
     }
+    public String getScore(){
+        return tv_score.getText().toString();
+    }
 
     public void saveScore() {
         File file = new File(getFilesDir(), "/maxscore.txt");
@@ -111,7 +115,7 @@ public class MyActivity extends Activity {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT);
-            View view = View.inflate(this, R.layout.dialog, null);
+            View view = View.inflate(this, R.layout.dialog,null);
             TextView tv_exit = (TextView) view.findViewById(R.id.tv_exit);
             TextView tv_nope = (TextView) view.findViewById(R.id.tv_nope);
             tv_exit.setOnClickListener(new View.OnClickListener() {
@@ -126,10 +130,8 @@ public class MyActivity extends Activity {
                     dialog.dismiss();
                 }
             });
-            builder.setView(view);
             dialog = builder.create();
             dialog.setView(view, 0, 0, 0, 0);
-            dialog.getWindow();
             dialog.show();
             return true;
         }

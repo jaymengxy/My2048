@@ -7,12 +7,16 @@ import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.AlertDialog.Builder;
 
 /**
  * Created by SinTi on 2014/8/9.
@@ -22,6 +26,7 @@ public class GameView extends LinearLayout {
 
     private Card[][] cardsMap = new Card[4][4];
     private List<Point> emptyPoints = new ArrayList<Point>();
+    private AlertDialog dialog;
 
     public GameView(Context context) {
         super(context);
@@ -167,7 +172,7 @@ public class GameView extends LinearLayout {
                             cardsMap[x][y].setNum(cardsMap[x][y].getNum()*2);
                             //同时将上面的卡片的数字置为0
                             cardsMap[x][y1].setNum(0);
-                            //游戏等分增加
+                            //游戏得分增加
                             MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
                             merge = true;
                         }
@@ -211,7 +216,7 @@ public class GameView extends LinearLayout {
                             cardsMap[x][y].setNum(cardsMap[x][y].getNum()*2);
                             //同时将下面的卡片的数字置为0
                             cardsMap[x][y1].setNum(0);
-                            //游戏等分增加
+                            //游戏得分增加
                             MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
                             merge = true;
                         }
@@ -330,13 +335,24 @@ public class GameView extends LinearLayout {
         }
         if(complete){
             MyActivity.getMyActivity().saveScore();
-            new AlertDialog.Builder(getContext()).setTitle("你好").setMessage("游戏已经结束").setPositiveButton("重新开始",new DialogInterface.OnClickListener(){
-
+            String finalscore = MyActivity.getMyActivity().getScore();
+            Builder builder = new Builder(getContext(), AlertDialog.THEME_HOLO_LIGHT);
+            View view = View.inflate(getContext(), R.layout.complete,null);
+            TextView tv_again = (TextView) view.findViewById(R.id.tv_again);
+            TextView tv_finalscore = (TextView) view.findViewById(R.id.tv_finalscore);
+            tv_finalscore.setText("Your score " + finalscore + " points");
+            // tv_finalscore.setTextColor(Color.parseColor("#80ff0000"));
+            tv_again.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(View v) {
                     startGame();
+                    dialog.dismiss();
                 }
-            }).show();
+            });
+
+            dialog = builder.create();
+            dialog.setView(view,0,0,0,0);
+            dialog.show();
         }
     }
 }
