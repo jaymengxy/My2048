@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- restart按键样式-->
+    <style name="restart_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">RESTART</item>
+        <item name="android:textColor">#ff2696b4</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <!-- SCORE BEST 标题样式-->
+    <style name="title_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">#cc02cc00</item>
+        <item name="android:gravity">center|bottom</item>
+    </style>
+    <!-- 分数样式 -->
+    <style name="score_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:text">0</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">#ffff9a07</item>
+    </style>
+</resources>

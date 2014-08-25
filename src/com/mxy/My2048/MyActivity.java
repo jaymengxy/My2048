@@ -1,7 +1,11 @@
 package com.mxy.My2048;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,16 +20,20 @@ public class MyActivity extends Activity {
     private int maxscore;
     private TextView tv_score;
     private TextView tv_max;
+    private AlertDialog dialog;
 
 
     //单例
     private static MyActivity myActivity = null;
-    public static MyActivity getMyActivity(){
+
+    public static MyActivity getMyActivity() {
         return myActivity;
     }
-    public MyActivity(){
+
+    public MyActivity() {
         myActivity = this;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,22 +43,24 @@ public class MyActivity extends Activity {
         readScore();
         maxscore = Integer.parseInt(tv_max.getText().toString());
     }
-    public void clearScore(){
+
+    public void clearScore() {
         score = 0;
         showScore();
     }
 
     public void showScore() {
-        tv_score.setText(score+"");
+        tv_score.setText(score + "");
     }
-    public void maxScore(){
-        tv_max.setText(maxscore+"");
+
+    public void maxScore() {
+        tv_max.setText(maxscore + "");
     }
-    public void addScore(int s){
-        score+=s;
+
+    public void addScore(int s) {
+        score += s;
         showScore();
-        if(score>maxscore)
-        {
+        if (score > maxscore) {
             maxscore = score;
             maxScore();
         }
@@ -60,22 +70,23 @@ public class MyActivity extends Activity {
         File file = new File(getFilesDir(), "/maxscore.txt");
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            fos.write((maxscore+"").getBytes());
+            fos.write((maxscore + "").getBytes());
             fos.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void readScore(){
+
+    public void readScore() {
         File file = new File(getFilesDir(), "/maxscore.txt");
-        if(file.exists()){
+        if (file.exists()) {
             try {
                 FileInputStream fis = new FileInputStream(file);
                 //把字节流转换成字符流
                 BufferedReader br = new BufferedReader(new InputStreamReader(fis));
                 String maxscore = br.readLine();
                 //把最高分显示
-                tv_max.setText(maxscore+"");
+                tv_max.setText(maxscore + "");
                 fis.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -93,5 +104,35 @@ public class MyActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         saveScore();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT);
+            View view = View.inflate(this, R.layout.dialog, null);
+            TextView tv_exit = (TextView) view.findViewById(R.id.tv_exit);
+            TextView tv_nope = (TextView) view.findViewById(R.id.tv_nope);
+            tv_exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+            tv_nope.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setView(view);
+            dialog = builder.create();
+            dialog.setView(view, 0, 0, 0, 0);
+            dialog.getWindow();
+            dialog.show();
+            return true;
+        }
+        return false;
     }
 }
