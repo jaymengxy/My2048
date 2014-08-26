@@ -2,13 +2,10 @@ package com.mxy.My2048;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.*;
@@ -99,9 +96,14 @@ public class MyActivity extends Activity {
     }
 
     public void restart(View view) {
-        GameView gv = (GameView) findViewById(R.id.gv);
-        gv.startGame();
+        Intent intent = new Intent(this, Dialog.class);
+        intent.putExtra("type", 0);
+        startActivity(intent);
+    }
 
+    public void gameRestart() {
+        GameView gv = (GameView)findViewById(R.id.gv);
+        gv.startGame();
     }
 
     @Override
@@ -114,8 +116,13 @@ public class MyActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this, Dialog.class);
+            intent.putExtra("type", 1);
+            startActivity(intent);
+            /*
+            // 对话框
             AlertDialog.Builder builder = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT);
-            View view = View.inflate(this, R.layout.dialog,null);
+            View view = View.inflate(this, R.layout.exit,null);
             TextView tv_exit = (TextView) view.findViewById(R.id.tv_exit);
             TextView tv_nope = (TextView) view.findViewById(R.id.tv_nope);
             tv_exit.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +140,18 @@ public class MyActivity extends Activity {
             dialog = builder.create();
             dialog.setView(view, 0, 0, 0, 0);
             dialog.show();
+            */
             return true;
         }
         return false;
+    }
+
+    /**
+     * 游戏结束
+     */
+    public void complete() {
+        Intent intent = new Intent(this, Dialog.class);
+        intent.putExtra("type", 2);
+        startActivity(intent);
     }
 }

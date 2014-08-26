@@ -2,12 +2,14 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:background="@android:color/transparent"
+              android:background="#66ffffff"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="match_parent">
     <TextView
+            android:id="@+id/tv_title"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Leave game?"
             android:textStyle="bold"
             android:gravity="center|bottom"
@@ -15,8 +17,9 @@
             android:textColor="#90ff0000"
             />
     <LinearLayout
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
         <TextView
                 android:layout_weight="1"
@@ -28,7 +31,7 @@
                 android:paddingBottom="20dp"
                 android:clickable="true"
                 android:textColor="#60ff0000"
-                android:id="@+id/tv_exit"
+                android:id="@+id/tv_left"
                 android:text="Exit"
                 />
         <TextView
@@ -40,7 +43,7 @@
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:textColor="#66ff0000"
-                android:id="@+id/tv_nope"
+                android:id="@+id/tv_right"
                 android:text="Nope"
                 />
     </LinearLayout>

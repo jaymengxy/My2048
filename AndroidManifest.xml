@@ -7,16 +7,20 @@
     <uses-sdk android:minSdkVersion="16"/>
     <application
             android:label="@string/app_name"
-            android:icon="@drawable/ic_launcher">
+            android:icon="@drawable/ic_launcher"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
         <activity
                 android:name="MyActivity"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Light.NoTitleBar">
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Dialog"
+                  android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
     </application>
 </manifest>

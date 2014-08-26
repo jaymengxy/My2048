@@ -2,9 +2,11 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:background="#66ffffff"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="match_parent">
     <TextView
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Game Over"
@@ -13,11 +15,16 @@
             android:textSize="45sp"
             android:textColor="#95ff0000"
             />
+    <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:textColor="#80ff0000"
                 android:id="@+id/tv_finalscore"
                 />
@@ -25,11 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:textColor="#60ff0000"
                 android:id="@+id/tv_again"
                 android:text="Try Again"
                 />
+        </LinearLayout>
 </LinearLayout>

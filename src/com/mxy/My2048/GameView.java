@@ -3,6 +3,7 @@ package com.mxy.My2048;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -333,7 +334,10 @@ public class GameView extends LinearLayout {
                 }
             }
         }
-        if(complete){
+        if(complete) {
+            MyActivity.getMyActivity().complete();
+            /*
+            //对话框
             MyActivity.getMyActivity().saveScore();
             String finalscore = MyActivity.getMyActivity().getScore();
             Builder builder = new Builder(getContext(), AlertDialog.THEME_HOLO_LIGHT);
@@ -353,6 +357,7 @@ public class GameView extends LinearLayout {
             dialog = builder.create();
             dialog.setView(view,0,0,0,0);
             dialog.show();
+            */
         }
     }
 }
