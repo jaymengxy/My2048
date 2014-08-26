@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.mxy.My2048"
           android:versionCode="1"
-          android:versionName="0.9.7">
+          android:versionName="0.9.8">
 
     <uses-sdk android:minSdkVersion="16"/>
     <application
