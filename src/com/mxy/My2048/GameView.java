@@ -151,7 +151,7 @@ public class GameView extends LinearLayout {
     //向下滑
     private void swipeDown() {
         boolean merge = false;
-
+        int addscore = 0;
         for (int x = 0; x < 4; x++) {
             for (int y = 3; y >=0; y--) {
 
@@ -174,7 +174,8 @@ public class GameView extends LinearLayout {
                             //同时将上面的卡片的数字置为0
                             cardsMap[x][y1].setNum(0);
                             //游戏得分增加
-                            MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            // MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            addscore += cardsMap[x][y].getNum();
                             merge = true;
                         }
 
@@ -184,7 +185,10 @@ public class GameView extends LinearLayout {
                 }
             }
         }
-
+        //将一次滑动所有的得分加上
+        if (addscore != 0) {
+            MyActivity.getMyActivity().addScore(addscore);
+        }
         if (merge) {
             //在随机位置添加卡片，判断游戏是否结束
             addRandomNum();
@@ -195,7 +199,7 @@ public class GameView extends LinearLayout {
     //向上划
     private void swipeUp() {
         boolean merge = false;
-
+        int addscore = 0;
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
 
@@ -218,17 +222,19 @@ public class GameView extends LinearLayout {
                             //同时将下面的卡片的数字置为0
                             cardsMap[x][y1].setNum(0);
                             //游戏得分增加
-                            MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            // MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            addscore += cardsMap[x][y].getNum();
                             merge = true;
                         }
-
                         break;
-
                     }
                 }
             }
         }
-
+        //将一次滑动所有的得分加上
+        if (addscore != 0) {
+            MyActivity.getMyActivity().addScore(addscore);
+        }
         if (merge) {
             //在随机位置添加卡片，判断游戏是否结束
             addRandomNum();
@@ -239,6 +245,7 @@ public class GameView extends LinearLayout {
     //向右划
     private void swipeRight() {
         boolean merge = false;
+        int addscore = 0;
         for(int y=0;y<4;y++)
         {
             for(int x=3;x>=0;x--)
@@ -265,13 +272,18 @@ public class GameView extends LinearLayout {
                             cardsMap[x1][y].setNum(0);
 
                             //游戏得分增加
-                            MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            // MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            addscore += cardsMap[x][y].getNum();
                             merge = true;
                         }
                         break;
                     }
                 }
             }
+        }
+        //将一次滑动所有的得分加上
+        if (addscore != 0) {
+            MyActivity.getMyActivity().addScore(addscore);
         }
         if(merge){
             //增加随机数字，检查是否结束
@@ -283,6 +295,7 @@ public class GameView extends LinearLayout {
     //向左划
     private void swipeLeft() {
         boolean merge = false;
+        int addscore = 0;
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 for (int x1 = x + 1; x1 < 4; x1++) {
@@ -301,13 +314,18 @@ public class GameView extends LinearLayout {
                             cardsMap[x][y].setNum(cardsMap[x][y].getNum() * 2);
                             cardsMap[x1][y].setNum(0);
                             //游戏得分增加
-                            MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            // MyActivity.getMyActivity().addScore(cardsMap[x][y].getNum());
+                            addscore += cardsMap[x][y].getNum();
                             merge = true;
                         }
                         break;
                     }
                 }
             }
+        }
+        //将一次滑动所有的得分加上
+        if (addscore != 0) {
+            MyActivity.getMyActivity().addScore(addscore);
         }
         //如果进行了运算
         if(merge){

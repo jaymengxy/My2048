@@ -56,7 +56,6 @@
                         style="@style/title_style"
                         android:text="SCORE"
                         />
-
                 <TextView
                         style="@style/score_style"
                         android:id="@+id/tv_score"

@@ -3,9 +3,11 @@ package com.mxy.My2048;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
+import android.os.*;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import java.io.*;
@@ -19,6 +21,8 @@ public class MyActivity extends Activity {
     private TextView tv_score;
     private TextView tv_max;
     private AlertDialog dialog;
+
+    int myProcessID = android.os.Process.myPid();
 
 
     //单例
@@ -56,8 +60,24 @@ public class MyActivity extends Activity {
     }
 
     public void addScore(int s) {
+        tv_score.setText("+"+s);
         score += s;
-        showScore();
+        AlphaAnimation aa_begin = new AlphaAnimation(0.0f, 0.5f);
+        aa_begin.setDuration(500);
+        aa_begin.setFillAfter(false);
+        tv_score.startAnimation(aa_begin);
+        aa_begin.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                showScore();
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
         if (score > maxscore) {
             maxscore = score;
             maxScore();
