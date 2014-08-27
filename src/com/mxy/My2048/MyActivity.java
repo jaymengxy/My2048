@@ -60,8 +60,8 @@ public class MyActivity extends Activity {
     }
 
     public void addScore(int s) {
-        tv_score.setText("+"+s);
         score += s;
+        tv_score.setText("+" + s);
         AlphaAnimation aa_begin = new AlphaAnimation(0.0f, 0.5f);
         aa_begin.setDuration(500);
         aa_begin.setFillAfter(false);
@@ -70,20 +70,38 @@ public class MyActivity extends Activity {
             @Override
             public void onAnimationStart(Animation animation) {
             }
+
             @Override
             public void onAnimationEnd(Animation animation) {
                 showScore();
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
         });
         if (score > maxscore) {
             maxscore = score;
-            maxScore();
+            tv_max.setText("+" + s);
+            tv_max.startAnimation(aa_begin);
+            aa_begin.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    maxScore();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
         }
     }
-    public String getScore(){
+
+    public String getScore() {
         return tv_score.getText().toString();
     }
 
@@ -122,7 +140,7 @@ public class MyActivity extends Activity {
     }
 
     public void gameRestart() {
-        GameView gv = (GameView)findViewById(R.id.gv);
+        GameView gv = (GameView) findViewById(R.id.gv);
         gv.startGame();
     }
 

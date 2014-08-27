@@ -18,12 +18,13 @@ public class Dialog extends Activity {
     private TextView tv_title;
     private TextView tv_left;
     private TextView tv_right;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        switch (intent.getIntExtra("type",-1)) {
+        switch (intent.getIntExtra("type", -1)) {
             case RESTART:
                 setContentView(R.layout.dialog);
                 tv_title = (TextView) findViewById(R.id.tv_title);
@@ -55,8 +56,8 @@ public class Dialog extends Activity {
                 tv_left.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onBackPressed();
                         MyActivity.getMyActivity().finish();
+                        onBackPressed();
                         System.exit(0);
                     }
                 });

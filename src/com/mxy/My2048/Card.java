@@ -9,21 +9,21 @@ import android.widget.TextView;
 /**
  * Created by SinTi on 2014/8/11.
  * 自定义卡片空间 显示数字 并进行移动
- * 
  */
-public class Card extends FrameLayout{
+public class Card extends FrameLayout {
 
     private TextView tv;
     private int num = 0;
     private View background;
+
     //构造函数初始化卡片
     public Card(Context context) {
         super(context);
-        LayoutParams lp =null;
+        LayoutParams lp = null;
 
-        lp = new LayoutParams(-1,-1);
+        lp = new LayoutParams(-1, -1);
         background = new View(getContext());
-        lp.setMargins(10,10,0,0);
+        lp.setMargins(10, 10, 0, 0);
         background.setBackgroundColor(0x33ffffff);
         addView(background, lp);
 
@@ -32,9 +32,9 @@ public class Card extends FrameLayout{
         tv.setTextSize(28);
         tv.setTextColor(0x33000000);
         tv.setGravity(Gravity.CENTER);
-        lp = new LayoutParams(-1,-1);
-        lp.setMargins(10,10,0,0);
-        addView(tv,lp);
+        lp = new LayoutParams(-1, -1);
+        lp.setMargins(10, 10, 0, 0);
+        addView(tv, lp);
 
 
         setNum(0);
@@ -47,13 +47,13 @@ public class Card extends FrameLayout{
     public void setNum(int num) {
         this.num = num;
         //如果num小于等于0，那么卡片上显示一个空字符串，如果不为空则显示相应的数字
-        if(num<=0){
+        if (num <= 0) {
             tv.setText("");
-        }else{
-            tv.setText(num+"");
+        } else {
+            tv.setText(num + "");
         }
         //根据数字不同显示不同的颜色
-        switch (num){
+        switch (num) {
             case 0:
                 tv.setBackgroundColor(0x00000000);
                 break;
@@ -95,7 +95,8 @@ public class Card extends FrameLayout{
                 break;
         }
     }
-    public boolean equals(Card c){
+
+    public boolean equals(Card c) {
         return getNum() == c.getNum();
     }
 }
