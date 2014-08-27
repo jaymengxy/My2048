@@ -3,7 +3,7 @@ package com.mxy.My2048;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.*;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -13,18 +13,11 @@ import android.widget.TextView;
 import java.io.*;
 
 public class MyActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
     private int score = 0;
     private int maxscore;
     private TextView tv_score;
     private TextView tv_max;
     private AlertDialog dialog;
-
-    int myProcessID = android.os.Process.myPid();
-
-
     //单例
     private static MyActivity myActivity = null;
 

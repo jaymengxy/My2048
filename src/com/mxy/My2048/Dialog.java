@@ -1,10 +1,8 @@
 package com.mxy.My2048;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
-import android.os.*;
-import android.os.Process;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
