@@ -181,8 +181,10 @@ public class MyActivity extends Activity {
      * 游戏结束
      */
     public void complete() {
+        showScore();
         Intent intent = new Intent(this, Dialog.class);
         intent.putExtra("type", 2);
         startActivity(intent);
     }
+
 }

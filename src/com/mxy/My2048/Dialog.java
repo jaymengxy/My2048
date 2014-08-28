@@ -1,6 +1,7 @@
 package com.mxy.My2048;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -54,9 +55,10 @@ public class Dialog extends Activity {
                 tv_left.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MyActivity.getMyActivity().finish();
                         onBackPressed();
+                        MyActivity.getMyActivity().finish();
                         System.exit(0);
+
                     }
                 });
                 tv_right.setOnClickListener(new View.OnClickListener() {
