@@ -1,8 +1,8 @@
 package com.mxy.My2048;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,14 +10,14 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
-import java.io.*;
 
 public class MyActivity extends Activity {
     private int score = 0;
     private int maxscore;
     private TextView tv_score;
     private TextView tv_max;
-    private AlertDialog dialog;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
     //单例
     private static MyActivity myActivity = null;
 
@@ -35,8 +35,9 @@ public class MyActivity extends Activity {
         setContentView(R.layout.main);
         tv_score = (TextView) findViewById(R.id.tv_score);
         tv_max = (TextView) findViewById(R.id.tv_max);
-        readScore();
-        maxscore = Integer.parseInt(tv_max.getText().toString());
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        maxscore = sp.getInt("maxscore", 0);
+        maxScore();
     }
 
     public void clearScore() {
@@ -50,6 +51,12 @@ public class MyActivity extends Activity {
 
     public void maxScore() {
         tv_max.setText(maxscore + "");
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        if (maxscore > sp.getInt("maxscore", 0)) {
+            editor = sp.edit();
+            editor.putInt("maxscore", maxscore);
+            editor.commit();
+        }
     }
 
     public void addScore(int s) {
@@ -73,7 +80,7 @@ public class MyActivity extends Activity {
             public void onAnimationRepeat(Animation animation) {
             }
         });
-        if (score > maxscore) {
+        if (score >= maxscore) {
             maxscore = score;
             tv_max.setText("+" + s);
             tv_max.startAnimation(aa_begin);
@@ -84,6 +91,7 @@ public class MyActivity extends Activity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
+                    showScore();
                     maxScore();
                 }
 
@@ -98,34 +106,6 @@ public class MyActivity extends Activity {
         return tv_score.getText().toString();
     }
 
-    public void saveScore() {
-        File file = new File(getFilesDir(), "/maxscore.txt");
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write((maxscore + "").getBytes());
-            fos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void readScore() {
-        File file = new File(getFilesDir(), "/maxscore.txt");
-        if (file.exists()) {
-            try {
-                FileInputStream fis = new FileInputStream(file);
-                //把字节流转换成字符流
-                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-                String maxscore = br.readLine();
-                //把最高分显示
-                tv_max.setText(maxscore + "");
-                fis.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void restart(View view) {
         Intent intent = new Intent(this, Dialog.class);
         intent.putExtra("type", 0);
@@ -135,12 +115,6 @@ public class MyActivity extends Activity {
     public void gameRestart() {
         GameView gv = (GameView) findViewById(R.id.gv);
         gv.startGame();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        saveScore();
     }
 
     @Override
